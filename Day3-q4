@@ -1,0 +1,24 @@
+Remove All Adjacent Duplicates In String
+
+class Solution {
+public:
+    string removeDuplicates(string s) {
+stack<char>ok;
+for(int i=0 ; i<s.size() ; i++)
+{
+    if(ok.empty()||ok.top()!=s[i])
+    {
+        ok.push(s[i]);
+    }
+    else ok.pop();
+}
+string ans="";
+while(!ok.empty())
+{
+    ans+=ok.top();
+    ok.pop();
+}
+reverse(ans.begin() , ans.end());
+return ans;
+    }
+};
