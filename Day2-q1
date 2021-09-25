@@ -1,3 +1,5 @@
+ Implement Stack using Queues
+
 class MyStack {
 public:
     queue<int>q1;
@@ -7,7 +9,7 @@ public:
         
         
     }
-    Implement Stack using Queues
+   
     
     /** Push element x onto stack. */
     void push(int x) {
