@@ -1,0 +1,38 @@
+Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit
+
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums, int limit) {
+         deque<int> maxDq;       
+        deque<int> minDq;       
+        
+        int i=0, j=0;
+        int ans = 1;
+        
+        while(j<nums.size()){
+            int curr = nums[j];
+            
+            while(!maxDq.empty() and nums[maxDq.back()]<=curr)
+                maxDq.pop_back();
+            
+            maxDq.push_back(j);
+            
+            while(!minDq.empty() and nums[minDq.back()]>=curr)
+                minDq.pop_back();
+            
+            minDq.push_back(j);
+            
+            while(abs(nums[maxDq.front()] - nums[minDq.front()]) > limit){
+                if(maxDq.front()==i) maxDq.pop_front();
+                if(minDq.front()==i) minDq.pop_front();
+                
+                i++;
+            }
+            
+            ans = max(ans, j-i+1);
+            j++;
+        }
+        
+        return ans;
+    }
+};
