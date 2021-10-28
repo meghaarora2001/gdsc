@@ -1,0 +1,33 @@
+https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
+
+class Solution {
+public:
+    void inorder(TreeNode* root, vector<int> &value){
+        if(!root){
+            return;
+        }
+        inorder(root->left, value);
+        value.push_back(root->val);
+        inorder(root->right, value);
+        return;
+    }
+    
+    bool findTarget(TreeNode* root, int k) {
+        vector<int> value;
+        inorder(root, value);
+        int l = 0, r = value.size()-1;
+        while(l < r){
+            int sum = value[l] + value[r];
+            if(sum == k){
+                return true;
+            }
+            else if(sum < k){
+                l++;
+            }
+            else{
+                r--;
+            }
+        }
+        return false;
+    }
+};
